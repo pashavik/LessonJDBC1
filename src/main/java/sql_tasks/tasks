@@ -1,0 +1,75 @@
+task10
+
+select model,price
+from printer
+where price =(select max(price) from printer)
+
+task15
+
+select hd
+from pc
+group by hd
+having count(hd)>1
+
+task18
+
+select distinct maker, price
+from product
+inner join printer on printer.model=product.model
+where price=(select min(price) from printer where color='y') and color='y'
+
+task19
+
+select maker, avg(screen)
+from product inner join laptop
+on product.model=laptop.model
+where type='laptop'
+group by maker
+
+task21
+
+select maker, max(price)
+from product
+inner join pc on pc.model=product.model
+group by maker
+
+task22
+
+select speed, avg(price)
+from pc
+where speed>600
+group by speed
+
+task23
+
+select maker
+from product
+inner join pc on pc.model=product.model
+where speed>=750
+intersect
+select maker
+from product
+inner join laptop on laptop.model=product.model
+where speed>=750
+
+task31
+
+select class, country
+from classes
+where bore>='16'
+
+task33
+
+select distinct ship
+from outcomes, battles
+where battle='North Atlantic' and result='sunk'
+
+task38
+
+select country
+from classes
+where type='bb'
+intersect
+select country
+from classes
+where type='bc'
